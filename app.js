@@ -12,6 +12,10 @@ connectDB();
 // Middleware
 app.use(express.json());
 
+app.use("/", (req, res) => {
+  res.send("Hello World!");
+});
+
 // Routes
 app.use("/api", todoRoutes);
 
