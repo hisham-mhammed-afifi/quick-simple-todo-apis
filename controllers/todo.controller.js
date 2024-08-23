@@ -3,7 +3,22 @@ const Todo = require("../models/Todo");
 // Get all todos
 exports.getTodos = async (req, res) => {
   try {
-    const todos = await Todo.find();
+    // Extract query parameters
+    const limit = parseInt(req.query.limit) || 10; // Default limit to 10 if not specified
+    const skip = parseInt(req.query.skip) || 0; // Default skip to 0 if not specified
+    const search = req.query.search || ""; // Default search to an empty string if not specified
+    const sort = req.query.sort === "asc" ? 1 : -1; // Default sort to descending order
+
+    // Build the query
+    const query = search ? { title: { $regex: search, $options: "i" } } : {};
+
+    // Execute the query with pagination and sorting
+    const todos = await Todo.find(query)
+      .sort({ createdAt: sort }) // Sort by createdAt field
+      .skip(skip)
+      .limit(limit);
+
+    // Return the result
     res.json(todos);
   } catch (err) {
     res.status(500).json({ message: err.message });
