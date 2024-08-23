@@ -9,7 +9,7 @@ POST http://localhost:5000/api/todos
 Content-Type: application/json
 
 {
-    "title": "Finish the Node.js project",
+    "title": "Research new tools for frontend development",
     "status": "active"  
 }
 

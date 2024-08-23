@@ -12,6 +12,9 @@ exports.getTodos = async (req, res) => {
     // Build the query
     const query = search ? { title: { $regex: search, $options: "i" } } : {};
 
+    // Get the total count of documents that match the query
+    const count = await Todo.countDocuments(query);
+
     // Execute the query with pagination and sorting
     const todos = await Todo.find(query)
       .sort({ createdAt: sort }) // Sort by createdAt field
@@ -19,7 +22,7 @@ exports.getTodos = async (req, res) => {
       .limit(limit);
 
     // Return the result
-    res.json(todos);
+    res.json({ result: todos, count });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
