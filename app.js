@@ -12,12 +12,12 @@ connectDB();
 // Middleware
 app.use(express.json());
 
+// Routes
+app.use("/api", todoRoutes);
+
 app.use("/", (req, res) => {
   res.send("Hello World!");
 });
-
-// Routes
-app.use("/api", todoRoutes);
 
 // Error Handler Middleware
 app.use(errorHandler);
