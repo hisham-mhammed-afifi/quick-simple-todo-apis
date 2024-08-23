@@ -1,0 +1,36 @@
+### Get All Todos
+GET http://localhost:5000/api/todos
+Accept: application/json
+
+###
+
+### Create a New Todo
+POST http://localhost:5000/api/todos
+Content-Type: application/json
+
+{
+    "title": "Finish the Node.js project",
+    "status": "active"  
+}
+
+###
+
+### Update a Todo
+PUT http://localhost:5000/api/todos/66c8dee5283f2ace33812f65
+Content-Type: application/json
+
+{
+    "title": "Finish the Node.js project and write documentation",
+    "status": "done"
+}
+
+### Replace {{todo_id}} with the actual ID of the todo item you want to update.
+
+###
+
+### Delete a Todo
+DELETE http://localhost:5000/api/todos/1
+
+### Replace {{todo_id}} with the actual ID of the todo item you want to delete.
+
+###
