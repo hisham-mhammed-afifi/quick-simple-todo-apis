@@ -4,6 +4,10 @@ const connectDB = require("./config/db");
 const todoRoutes = require("./routes/todo.routes");
 const errorHandler = require("./middlewares/errorHandler");
 
+//  CORS
+const cors = require("cors");
+app.use(cors({ origin: "*", credentials: true }));
+
 const app = express();
 
 // Connect Database
