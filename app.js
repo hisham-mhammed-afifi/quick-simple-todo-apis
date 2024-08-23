@@ -1,12 +1,12 @@
 require("dotenv").config();
+const cors = require("cors");
 const express = require("express");
 const connectDB = require("./config/db");
 const todoRoutes = require("./routes/todo.routes");
 const errorHandler = require("./middlewares/errorHandler");
 
 //  CORS
-const cors = require("cors");
-app.use(cors({ origin: "*", credentials: true }));
+app.use(cors({ origin: ["http://localhost:4200"], credentials: true }));
 
 const app = express();
 
